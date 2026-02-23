@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أذكار المسلم</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            background: #05060a;
+            color: #f8f9fa;
+            font-family: "Tajawal", sans-serif;
+            scroll-behavior: smooth;
+        }
+        .navbar {
+            background: #05060a !important;
+            border-bottom: 1px solid #444;
+            sticky: top;
+        }
+        .navbar-brand {
+            color: #d4af37 !important;
+            font-weight: 700;
+        }
+        #timeBox {
+            background: linear-gradient(135deg, #111827, #020617);
+            border: 1px solid #d4af37;
+            color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px auto;
+            text-align: center;
+            width: 95%;
+            max-width: 700px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+        .section-title {
+            margin: 40px 0 20px;
+            text-align: center;
+            font-weight: 700;
+            color: #d4af37;
+        }
+        .card-dzkr {
+            background: radial-gradient(circle at top, #111827, #020617);
+            border: 1px solid #2d3748;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            padding: 20px;
+            color: #f8f9fa;
+            transition: transform .25s ease;
+        }
+        .card-dzkr:hover {
+            border-color: #d4af37;
+        }
+        .dzkr-text {
+            font-size: 1.05rem;
+            line-height: 2;
+            margin-bottom: 15px;
+        }
+        .badge-section {
+            font-size: 0.8rem;
+            background: #111827;
+            border: 1px solid #2d3748;
+            color: #d4af37;
+            padding: 3px 12px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .counter-btn {
+            background: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .counter-btn.done {
+            background: #d4af37;
+            color: #000;
+        }
+        .action-icon {
+            color: #6b7280;
+            margin-right: 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .action-icon:hover { color: #d4af37; }
+        
+        .search-box { width: 95%; max-width: 600px; margin: 0 auto 20px; }
+        .search-box input { background: #020617; border: 1px solid #374151; color: #f8f9fa; }
+        
+        .dua-list {
+            background: #020617;
+            border-radius: 12px;
+            border: 1px solid #1f2933;
+            padding: 15px 18px;
+        }
+        .dua-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #111827;
+            line-height: 1.9;
+        }
+        .dua-list li span { color: #d4af37; }
+        
+<link href="https://unpkg.com/cloudinary-video-player@1.10.6/dist/cld-video-player.min.css" rel="stylesheet">
+<script src="https://unpkg.com/cloudinary-video-player@1.10.6/dist/cld-video-player.min.js" type="text/javascript"></script>
+
+<div style="max-width: 750px; margin: 30px auto; padding: 0 15px;">
+    <video
+      id="doc-player"
+      controls
+      muted
+      class="cld-video-player cld-fluid"
+      style="border-radius: 15px; border: 2px solid #d4af37; overflow: hidden;">
+    </video>
+</div>
+
+<script>
+    const cld = cloudinary.VideoPlayer('doc-player', { 
+        cloud_name: 'dguoajor2' 
+    });
+    cld.source('WOW_jy4yg5');
+</script>
+
+        footer {
+            margin-top: 40px;
+            padding: 30px 10px;
+            text-align: center;
+            background: #020617;
+            border-top: 1px solid #111827;
+        }
+        .sadaqa { color: #d4af37; font-weight: 600; margin-top: 8px; }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <a class="navbar-brand" href="#">أذكار المسلم</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="#morning" style="color:#d4af37">أذكار الصباح</a></li>
+            <li class="nav-item"><a class="nav-link" href="#evening" style="color:#d4af37">أذكار المساء</a></li>
+            <li class="nav-item"><a class="nav-link" href="#duaa" style="color:#d4af37">أدعية منوعة</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div id="timeBox">
+    <h5 id="today"></h5>
+    <h6 id="hijri"></h6>
+    <h6 id="time"></h6>
+</div>
+
+<div class="search-box">
+    <input id="searchInput" type="text" class="form-control" placeholder="ابحث في الأذكار والأدعية..." onkeyup="filterDzkr()">
+</div>
+
+<h3 id="morning" class="section-title">أذكار الصباح</h3>
+<div class="container" id="morningSection">
+
+    <div class="card-dzkr dzkr-item">
+        <div class="badge-section">صباح</div>
+        <div class="dzkr-text">أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، ربِّ أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده، ربِّ أعوذ بك من الكسل وسوء الكِبَر، ربِّ أعوذ بك من عذاب في النار وعذاب في القبر.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم بك أصبحنا وبك أمسينا، وبك نحيا وبك نموت وإليك النشور.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم إني أصبحت أشهدك، وأشهد حملة عرشك، وملائكتك، وجميع خلقك، أنك أنت الله لا إله إلا أنت وحدك لا شريك لك، وأن محمدًا عبدك ورسولك.</div>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center"><button class="counter-btn" onclick="countPress(this, 4)">4</button><small class="mr-2 text-muted">تقال 4 مرات</small></div>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا.</div>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="counter-btn" onclick="countPress(this, 3)">3</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم ما أصبح بي من نعمة أو بأحد من خلقك، فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري، لا إله إلا أنت. اللهم إني أعوذ بك من الكفر والفقر، وأعوذ بك من عذاب القبر، لا إله إلا أنت.</div>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="counter-btn" onclick="countPress(this, 3)">3</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">حسبي الله لا إله إلا هو، عليه توكلت وهو رب العرش العظيم.</div>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="counter-btn" onclick="countPress(this, 7)">7</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم إني أسألك العفو والعافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي، واحفظني من بين يدي ومن خلفي، وعن يميني وعن شمالي، ومن فوقي، وأعوذ بعظمتك أن أُغتال من تحتي.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي، فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم إني أصبحت منك في نعمة وعافية وستر، فأتمم نعمتك عليّ وعافيتك وسترك في الدنيا والآخرة.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم فاطر السماوات والأرض، عالم الغيب والشهادة، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشِركه، وأن أقترف على نفسي سوءًا أو أجرّه إلى مسلم.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">أصبحنا على فطرة الإسلام، وكلمة الإخلاص، ودين نبينا محمد ﷺ، وملة أبينا إبراهيم حنيفًا مسلمًا وما كان من المشركين.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم إني أسألك علماً نافعاً، ورزقاً طيباً، وعملاً متقبلاً.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">آية الكرسي: "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ".</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">سورة الإخلاص: "قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ". (ثلاث مرات)</div>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="counter-btn" onclick="countPress(this, 3)">3</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">سورة الفلق: "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ". (ثلاث مرات)</div>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="counter-btn" onclick="countPress(this, 3)">3</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">سورة الناس: "قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ". (ثلاث مرات)</div>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="counter-btn" onclick="countPress(this, 3)">3</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">خواتيم سورة البقرة: "آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِ ۚ وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ ۝ لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ ۖ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا ۚ أَنتَ مَوْلَانَا فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ".</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم إني أسألك خير هذا اليوم، فتحه ونصره ونوره وبركته وهداه، وأعوذ بك من شر ما فيه وشر ما بعده.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+</div>
+
+<h3 id="evening" class="section-title">أذكار المساء</h3>
+<div class="container" id="eveningSection">
+
+    <div class="card-dzkr dzkr-item">
+        <div class="badge-section">مساء</div>
+        <div class="dzkr-text">أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، ربِّ أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها، ربِّ أعوذ بك من الكسل وسوء الكِبَر، ربِّ أعوذ بك من عذاب في النار وعذاب في القبر.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم بك أمسينا وبك أصبحنا، وبك نحيا وبك نموت وإليك المصير.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم إني أمسيت أشهدك، وأشهد حملة عرشك، وملائكتك، وجميع خلقك، أنك أنت الله لا إله إلا أنت وحدك لا شريك لك، وأن محمدًا عبدك ورسولك.</div>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="counter-btn" onclick="countPress(this, 4)">4</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا.</div>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="counter-btn" onclick="countPress(this, 3)">3</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم ما أمسى بي من نعمة أو بأحد من خلقك، فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم إني أمسيت منك في نعمة وعافية وستر، فأتمم نعمتك عليّ وعافيتك وسترك في الدنيا والآخرة.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم فاطر السماوات والأرض، عالم الغيب والشهادة، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشِركه، وأن أقترف على نفسي سوءًا أو أجرّه إلى مسلم.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">أمسينا على فطرة الإسلام، وكلمة الإخلاص، ودين نبينا محمد ﷺ، وملة أبينا إبراهيم حنيفًا مسلمًا وما كان من المشركين.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">اللهم إني أسألك خير هذه الليلة، فتحها ونصرها ونورها وبركتها وهداه، وأعوذ بك من شر ما فيها وشر ما بعدها.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">آية الكرسي كاملة كما وردت في الصباح.</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">سورة الإخلاص، الفلق، والناس (ثلاث مرات لكل سورة).</div>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="counter-btn" onclick="countPress(this, 3)">3</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+    <div class="card-dzkr dzkr-item">
+        <div class="dzkr-text">خواتيم سورة البقرة: "آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ..."</div>
+        <div class="d-flex justify-content-between">
+            <button class="counter-btn" onclick="countPress(this, 1)">1</button>
+            <i class="far fa-copy action-icon" onclick="copyText(this)"></i>
+        </div>
+    </div>
+
+</div>
+
+<h3 id="duaa" class="section-title">أدعية منوعة</h3>
+<div class="container">
+    <div class="dua-list dzkr-item">
+        <ul>
+            <li><span>•</span> ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.</li>
+            <li><span>•</span> ربنا ظلمنا أنفسنا وإن لم تغفر لنا وترحمنا لنكونن من الخاسرين.</li>
+            <li><span>•</span> رب اغفر لي ولوالدي وللمؤمنين يوم يقوم الحساب.</li>
+            <li><span>•</span> اللهم إني أسألك الهدى والتقى والعفاف والغنى.</li>
+            <li><span>•</span> اللهم أصلح لي ديني الذي هو عصمة أمري، وأصلح لي دنياي التي فيها معاشي، وأصلح لي آخرتي التي فيها معادي، واجعل الحياة زيادة لي في كل خير، واجعل الموت راحة لي من كل شر.</li>
+            <li><span>•</span> اللهم إني أعوذ بك من الهم والحزن، والعجز والكسل، والبخل والجبن، وضَلَع الدَّين وغلبة الرجال.</li>
+            <li><span>•</span> اللهم اغفر لي ولوالدي ولجميع موتى المسلمين والمسلمات.</li>
+            <li><span>•</span> اللهم اجعل القرآن العظيم ربيع قلبي، ونور صدري، وجلاء حزني، وذهاب همي وغمي.</li>
+            <li><span>•</span> اللهم إني أسألك من الخير كله عاجله وآجله، ما علمت منه وما لم أعلم، وأعوذ بك من الشر كله عاجله وآجله، ما علمت منه وما لم أعلم.</li>
+            <li><span>•</span> اللهم إني أسألك الجنة وما قرّب إليها من قول وعمل، وأعوذ بك من النار وما قرّب إليها من قول وعمل.</li>
+            <li><span>•</span> اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي.</li>
+            <li><span>•</span> اللهم يا مقلب القلوب ثبت قلبي على دينك.</li>
+            <li><span>•</span> اللهم يا مصرف القلوب صرف قلبي على طاعتك.</li>
+            <li><span>•</span> اللهم ارزقني حسن الخاتمة، واجعل آخر كلامي من الدنيا لا إله إلا الله.</li>
+            <li><span>•</span> اللهم اجعل خير عمري آخره، وخير عملي خواتيمه، وخير أيامي يوم ألقاك.</li>
+        </ul>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</div>
+</div>
+
+<h3 class="section-title">مرئيات</h3>
+<div class="container">
+    <div class="video-wrapper">
+        <iframe
+            src="https://player.cloudinary.com/embed/?cloud_name=dguoajor2&public_id=WOW_jy4yg5&fluid=true&autoplay=false"
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+            allowfullscreen
+            frameborder="0"
+            style="width: 100%; aspect-ratio: 16/9; display: block;">
+        </iframe>
+    </div>
+</div>
+
+<footer>
+    <div>© 2026 أذكار المسلم</div>
+    <div class="sadaqa">صدقة جارية عن محسن محمد علي الهاشمي ولسائر موتى المسلمين والمسلمات</div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<script>
+    function updateTime() {
+        const now = new Date();
+        document.getElementById("time").innerText = "الوقت الآن: " + now.toLocaleTimeString("ar-SA");
+        document.getElementById("today").innerText = now.toLocaleDateString("ar-SA", { weekday: "long" });
+        document.getElementById("hijri").innerText = now.toLocaleDateString("ar-SA-u-ca-islamic", { day: "numeric", month: "long", year: "numeric" });
+    }
+    setInterval(updateTime, 1000); updateTime();
+
+    function countPress(btn, max) {
+        let current = btn.innerText === "✓" ? 0 : parseInt(btn.innerText);
+        if (isNaN(current)) current = max; 
+        if (current > 1) { btn.innerText = current - 1; } 
+        else { btn.innerText = "✓"; btn.classList.add("done"); if (navigator.vibrate) navigator.vibrate(40); }
+    }
+
+    function copyText(icon) {
+        const text = icon.closest('.card-dzkr').querySelector('.dzkr-text').innerText;
+        navigator.clipboard.writeText(text);
+        const oldClass = icon.className;
+        icon.className = "fas fa-check text-success action-icon";
+        setTimeout(() => icon.className = oldClass, 1500);
+    }
+
+    function filterDzkr() {
+        const q = document.getElementById("searchInput").value.toLowerCase();
+        document.querySelectorAll(".dzkr-item").forEach(el => {
+            el.style.display = el.innerText.toLowerCase().includes(q) ? "" : "none";
+        });
+    }
+</script>
+
+</body>
+</html>
